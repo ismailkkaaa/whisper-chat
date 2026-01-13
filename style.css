@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0f0c29;
+  color: white;
+  margin: 0;
+}
+
+.screen {
+  display: none;
+  height: 100vh;
+  padding: 20px;
+}
+
+.screen.active {
+  display: block;
+}
+
+#messages {
+  height: 70vh;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin-bottom: 8px;
+}
+
+.input-box {
+  display: flex;
+  gap: 10px;
+}
+
+input, button {
+  padding: 10px;
+  font-size: 16px;
+}
