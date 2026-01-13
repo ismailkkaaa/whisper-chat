@@ -47,8 +47,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 10% 20%, rgba(176, 39, 255, 0.1) 0%, transparent 20%),
-              radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 20%);
+  background: radial-gradient(circle at 10% 20%, rgba(176, 39, 255, 0.1) 0%, transparent 20%),              radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 20%);
   z-index: -1;
   pointer-events: none;
 }
@@ -97,8 +96,7 @@ body::before {
 
 .welcome-container p {
   color: var(--text-secondary);
-  margin-bottom: calc(var(--base-margin) * 2);
-  font-size: clamp(0.9rem, 3vw, 1.1rem); /* Responsive size */
+  margin-bottom: calc(var(--base-margin) * 2);  font-size: clamp(0.9rem, 3vw, 1.1rem); /* Responsive size */
 }
 
 .input-group {
@@ -147,8 +145,7 @@ body::before {
 
 /* --- Chat Screen Layout --- */
 #chat-screen {
-  flex-direction: column;
-}
+  flex-direction: column;}
 
 /* --- Chat Header --- */
 .chat-header {
@@ -198,7 +195,6 @@ body::before {
 #messages::-webkit-scrollbar {
   width: clamp(6px, 2vw, 8px); /* Responsive scrollbar width */
 }
-
 #messages::-webkit-scrollbar-track {
   background: var(--secondary-bg);
 }
@@ -247,7 +243,6 @@ body::before {
   /* Optional glow */
   box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
 }
-
 .message-content {
   flex: 1;
 }
@@ -297,8 +292,7 @@ body::before {
   border-color: var(--accent-glow);
 }
 
-.input-box button {
-  padding: calc(var(--base-padding) * 0.7) calc(var(--base-padding) * 1.1);
+.input-box button {  padding: calc(var(--base-padding) * 0.7) calc(var(--base-padding) * 1.1);
   background: var(--accent-glow);
   color: var(--primary-bg);
   border: none;
@@ -347,8 +341,7 @@ body::before {
     /* Ensure input box items don't wrap unexpectedly */
     .input-box {
         flex-wrap: nowrap; /* Keep inputs and button on same line */
-    }
-    .input-box input {
+    }    .input-box input {
         min-width: 0; /* Allow input to shrink */
     }
 }
@@ -397,5 +390,4 @@ body::before {
     }
     #messages {
         height: 60vh; /* Reduce messages area height */
-    }
-}
+    }}
