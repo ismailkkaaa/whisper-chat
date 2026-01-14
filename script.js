@@ -1,67 +1,68 @@
 let socket;
 let username;
 let room;
-const joinScreen = document.getElementById("join-screen");
-const chatScreen = document.getElementById("chat-screen");
-const joinBtn = document.getElementById("join-btn");
-const sendBtn = document.getElementById("send-btn");
-const msgInput = document.getElementById("message");
+
+const joinScreen = document.getElementById("join");
+const chatScreen = document.getElementById("chat");
+
+const joinBtn = document.getElementById("joinBtn");
+const sendBtn = document.getElementById("sendBtn");
+
+const msgInput = document.getElementById("messageInput");
 const messages = document.getElementById("messages");
-const roomTitle = document.getElementById("room-title");
+const roomTitle = document.getElementById("roomTitle");
 
 joinBtn.onclick = () => {
   username = document.getElementById("username").value.trim();
   room = document.getElementById("room").value.trim();
-  if (!username || !room) {
-    alert("Enter name and room");
-    return;
-  }
+
+  if (!username || !room) return alert("Fill all fields");
   connect();
 };
 
 function connect() {
   socket = new WebSocket(
-    "wss://whisper-chat.albasith399.workers.dev/?room=" + room
+    "wss://whisper-chat.albasith399.workers.dev/?room=" + encodeURIComponent(room)
   );
+
   socket.onopen = () => {
     joinScreen.classList.remove("active");
     chatScreen.classList.add("active");
-    roomTitle.innerText = room; // Removed "Room: " prefix for cleaner look
+    roomTitle.textContent = `# ${room}`;
+    sendBtn.disabled = false;
   };
-  socket.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-    addMessage(data.user, data.text);
+
+  socket.onmessage = (e) => {
+    try {
+      const data = JSON.parse(e.data);
+      renderMessage(data.user, data.text);
+    } catch {}
   };
-  socket.onerror = () => {
-    alert("Connection error");
-  };
+
+  socket.onclose = () => alert("Disconnected");
 }
 
-sendBtn.onclick = () => {
+sendBtn.onclick = sendMessage;
+msgInput.onkeydown = e => e.key === "Enter" && sendMessage();
+
+function sendMessage() {
   const text = msgInput.value.trim();
-  if (!text) return;
-  socket.send(JSON.stringify({
-    user: username,
-    text: text
-  }));
+  if (!text || socket.readyState !== 1) return;
+
+  socket.send(JSON.stringify({ user: username, text }));
   msgInput.value = "";
-  msgInput.focus(); // Keep focus on input after sending
-};
+}
 
-function addMessage(user, text) {
+function renderMessage(user, text) {
   const div = document.createElement("div");
-  div.className = "message";
+  div.className = "msg " + (user === username ? "me" : "other");
 
-  // Generate initials avatar
-  const initials = user.slice(0, 2).toUpperCase();
+  div.textContent = text;
 
-  div.innerHTML = `
-    <div class="avatar">${initials}</div>
-    <div class="message-content">
-      <div class="username">${user}</div>
-      <div class="text">${text}</div>
-    </div>
-  `;
+  const meta = document.createElement("span");
+  meta.textContent = `${user} • ${new Date().toLocaleTimeString()}`;
+
+  div.appendChild(meta);
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 }
