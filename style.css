@@ -1,393 +1,162 @@
-/* --- Global & Reset --- */
-:root {
-  /* Cosmic Colors */
-  --primary-bg: #0a0e17; /* Deep space */
-  --secondary-bg: #121826; /* Slightly lighter space */
-  --card-bg: rgba(18, 24, 38, 0.85); /* Message card bg */
-  --accent-glow: #00f0ff; /* Neon blue */
-  --accent-accent: #b027ff; /* Neon purple */
-  --text-primary: #e0e0ff; /* Light text */
-  --text-secondary: #a0a0c0; /* Muted text */
-  --success: #00ff9d; /* Success/good state */
-
-  /* Fonts */
-  --font-main: 'Orbitron', monospace;
-  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-  /* Responsive Base Sizes */
-  --base-font-size: clamp(0.8rem, 2vw, 1rem);
-  --base-padding: clamp(8px, 3vw, 20px);
-  --base-margin: clamp(4px, 2vw, 10px);
-  --border-radius: clamp(8px, 2vw, 12px);
-  --avatar-size-lg: clamp(32px, 5vw, 36px);
-  --avatar-size-sm: clamp(28px, 4vw, 32px);
-  --max-message-width: 90%;
-}
-
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-  font-family: var(--font-ui);
-  background: var(--primary-bg);
-  color: var(--text-primary);
-  min-height: 100vh;
-  overflow: hidden; /* Prevent default scroll */
-  position: relative;
-  font-size: var(--base-font-size); /* Apply responsive base font size */
+  margin: 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  height: 100vh;
 }
 
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 10% 20%, rgba(176, 39, 255, 0.1) 0%, transparent 20%),              radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 20%);
-  z-index: -1;
-  pointer-events: none;
-}
-
-
-/* --- Screens --- */
+/* Screens */
 .screen {
   display: none;
   height: 100vh;
-  width: 100%;
-  padding: var(--base-padding);
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-
 .screen.active {
   display: flex;
-  animation: fadeInScale 0.4s ease-out forwards;
 }
 
-@keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-
-/* --- Join Screen --- */
-.welcome-container {
-  text-align: center;
-  max-width: min(400px, 95vw); /* Max 400px, or 95% of viewport width if smaller */
-  width: 100%;
-}
-
-.logo {
-  font-family: var(--font-main);
-  font-size: clamp(2rem, 5vw, 2.8rem); /* Responsive size */
-  margin-bottom: calc(var(--base-margin) * 0.5);
-  background: linear-gradient(45deg, var(--accent-glow), var(--accent-accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-  display: inline-block;
-}
-
-.welcome-container p {
-  color: var(--text-secondary);
-  margin-bottom: calc(var(--base-margin) * 2);  font-size: clamp(0.9rem, 3vw, 1.1rem); /* Responsive size */
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--base-margin);
-  width: 100%;
-}
-
-.input-group input {
-  padding: calc(var(--base-padding) * 0.7) var(--base-padding);
-  background: var(--card-bg);
-  border: 1px solid rgba(0, 240, 255, 0.3);
-  border-radius: var(--border-radius);
-  color: var(--text-primary);
-  font-size: var(--base-font-size);
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.input-group input:focus {
-  border-color: var(--accent-glow);
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-}
-
-.input-group button {
-  padding: calc(var(--base-padding) * 0.7) calc(var(--base-padding) * 1.1);
-  background: linear-gradient(45deg, var(--accent-glow), var(--accent-accent));
-  border: none;
-  border-radius: var(--border-radius);
-  color: #0a0e17;
-  font-weight: bold;
-  font-size: var(--base-font-size);
-  cursor: pointer;
-  transition: transform 0.2s, filter brightness(0.9);
-  display: flex;
+/* Join Screen */
+#join {
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
 }
 
-.input-group button:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
+.join-card {
+  width: 90%;
+  max-width: 380px;
+  padding: 30px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  text-align: center;
 }
 
-/* --- Chat Screen Layout --- */
-#chat-screen {
-  flex-direction: column;}
+.join-card h1 {
+  margin-bottom: 5px;
+}
 
-/* --- Chat Header --- */
+.join-card p {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.join-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.join-card button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #00e5ff;
+  color: black;
+}
+
+/* Chat Layout */
+#chat {
+  flex-direction: column;
+}
+
+/* Header */
 .chat-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: calc(var(--base-padding) * 0.6) var(--base-padding);
-  background: var(--card-bg);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 16px;
+  background: rgba(0,0,0,0.3);
   backdrop-filter: blur(10px);
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
-.room-info, .user-status {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-main);
-  font-size: clamp(0.9rem, 3vw, 1.1rem); /* Responsive size */
+.status {
+  font-size: 12px;
+  color: #00ffcc;
 }
 
-.room-info span {
-  color: var(--accent-glow);
-}
-
-.user-status i {
-  font-size: 0.8em; /* Relative to parent font size */
-}
-
-
-/* --- Messages Container --- */
+/* Messages */
 #messages {
   flex: 1;
   overflow-y: auto;
-  padding: var(--base-padding);
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: var(--base-margin); /* Space between messages */
-  background: var(--secondary-bg);
-  border-left: 1px solid rgba(0, 240, 255, 0.1);
-  border-right: 1px solid rgba(0, 240, 255, 0.1);
-  /* Scrollbar styling */
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-glow) var(--secondary-bg);
+  gap: 10px;
 }
 
-#messages::-webkit-scrollbar {
-  width: clamp(6px, 2vw, 8px); /* Responsive scrollbar width */
-}
-#messages::-webkit-scrollbar-track {
-  background: var(--secondary-bg);
-}
-
-#messages::-webkit-scrollbar-thumb {
-  background-color: var(--accent-glow);
-  border-radius: calc(var(--border-radius) * 0.5);
+/* Message Bubbles */
+.msg {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  animation: fadeIn 0.2s ease;
 }
 
+.me {
+  align-self: flex-end;
+  background: #00e5ff;
+  color: black;
+}
 
-/* --- Individual Message --- */
-.message {
+.other {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.15);
+}
+
+.msg span {
+  display: block;
+  font-size: 11px;
+  opacity: 0.6;
+  margin-top: 4px;
+}
+
+/* Input */
+.chat-input {
   display: flex;
-  gap: var(--base-margin);
-  align-items: flex-start;
-  padding: calc(var(--base-padding) * 0.7) var(--base-padding);
-  background: var(--card-bg);
-  border-radius: calc(var(--border-radius) * 1.33); /* Slightly larger radius */
-  border: 1px solid rgba(0, 240, 255, 0.15);
-  max-width: var(--max-message-width); /* Responsive max width */
-  animation: messageAppear 0.3s ease-out forwards;
-  opacity: 0;
-  transform: translateY(10px);
+  padding: 10px;
+  gap: 10px;
+  background: rgba(0,0,0,0.35);
 }
 
-@keyframes messageAppear {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat-input button {
+  width: 48px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #00e5ff;
+}
+
+.chat-input button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  .msg {
+    max-width: 90%;
   }
 }
-
-.avatar {
-  width: var(--avatar-size-lg); /* Responsive size */
-  height: var(--avatar-size-lg); /* Responsive size */
-  border-radius: 50%;
-  background: linear-gradient(45deg, var(--accent-glow), var(--accent-accent));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  font-weight: bold;
-  font-size: calc(var(--base-font-size) * 0.9); /* Responsive font size */
-  color: var(--primary-bg);
-  font-family: var(--font-main);
-  /* Optional glow */
-  box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
-}
-.message-content {
-  flex: 1;
-}
-
-.username {
-  font-weight: bold;
-  color: var(--accent-glow);
-  margin-bottom: calc(var(--base-margin) * 0.4);
-  font-size: calc(var(--base-font-size) * 0.95); /* Responsive font size */
-  font-family: var(--font-main);
-}
-
-.text {
-  color: var(--text-primary);
-  line-height: 1.5;
-  font-size: var(--base-font-size); /* Consistent with body */
-}
-
-
-/* --- Input Area (Footer) --- */
-.input-area {
-  padding: var(--base-padding);
-  background: var(--card-bg);
-  border-top: 1px solid rgba(0, 240, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
-}
-
-.input-box {
-  display: flex;
-  gap: calc(var(--base-margin) * 0.5);
-}
-
-.input-box input {
-  flex: 1;
-  padding: calc(var(--base-padding) * 0.7) var(--base-padding);
-  background: var(--secondary-bg);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  border-radius: var(--border-radius);
-  color: var(--text-primary);
-  font-size: var(--base-font-size);
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.input-box input:focus {
-  border-color: var(--accent-glow);
-}
-
-.input-box button {  padding: calc(var(--base-padding) * 0.7) calc(var(--base-padding) * 1.1);
-  background: var(--accent-glow);
-  color: var(--primary-bg);
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  font-size: calc(var(--base-font-size) * 1.1); /* Responsive icon size */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background 0.3s, transform 0.2s;
-  min-width: fit-content; /* Ensure button doesn't shrink too much */
-}
-
-.input-box button:hover {
-  background: #00ccdd; /* Slightly darker on hover */
-  transform: scale(1.03);
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-    /* Adjust max message width for smaller screens */
-    :root {
-        --max-message-width: 95%;
-    }
-    /* Adjust avatar size */
-    .avatar {
-        width: var(--avatar-size-sm);
-        height: var(--avatar-size-sm);
-        font-size: calc(var(--base-font-size) * 0.8);
-    }
-    /* Adjust header font size slightly */
-    .room-info, .user-status {
-        font-size: clamp(0.85rem, 2.8vw, 1rem);
-    }
-    /* Adjust message font sizes */
-    .username {
-        font-size: calc(var(--base-font-size) * 0.9);
-    }
-    .text {
-        font-size: var(--base-font-size);
-    }
-    /* Adjust input area padding */
-    .input-area {
-        padding: calc(var(--base-padding) * 0.8);
-    }
-    /* Ensure input box items don't wrap unexpectedly */
-    .input-box {
-        flex-wrap: nowrap; /* Keep inputs and button on same line */
-    }    .input-box input {
-        min-width: 0; /* Allow input to shrink */
-    }
-}
-
-@media (max-width: 480px) {
-    /* Further adjust max message width */
-    :root {
-        --max-message-width: 100%;
-        --border-radius: 10px; /* Slightly smaller radius on very small screens */
-    }
-    /* Adjust logo size */
-    .logo {
-        font-size: clamp(1.8rem, 6vw, 2.2rem);
-    }
-    /* Adjust welcome text */
-    .welcome-container p {
-        font-size: clamp(0.8rem, 2.8vw, 1rem);
-        margin-bottom: calc(var(--base-margin) * 1.5);
-    }
-    /* Adjust button text size */
-    .input-group button {
-        font-size: calc(var(--base-font-size) * 0.95);
-        padding: calc(var(--base-padding) * 0.6) calc(var(--base-padding) * 0.9);
-    }
-    /* Adjust message padding */
-    .message {
-        padding: calc(var(--base-padding) * 0.6) calc(var(--base-padding) * 0.8);
-        gap: calc(var(--base-margin) * 0.8);
-    }
-    /* Adjust input box padding */
-    .input-box input {
-        padding: calc(var(--base-padding) * 0.6) calc(var(--base-padding) * 0.8);
-    }
-    .input-box button {
-        padding: calc(var(--base-padding) * 0.6) calc(var(--base-padding) * 0.9);
-        font-size: calc(var(--base-font-size) * 1.0);
-    }
-}
-
-/* --- Landscape Orientation Adjustment --- */
-@media (orientation: landscape) and (max-height: 500px) {
-    /* Adjust for short landscape screens */
-    .screen {
-        justify-content: flex-start;
-        padding-top: 10vh; /* Add some top padding */
-    }
-    #messages {
-        height: 60vh; /* Reduce messages area height */
-    }}
