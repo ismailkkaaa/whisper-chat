@@ -2,47 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Whisper - Cosmic Chat</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Link to Orbitron font for futuristic feel -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Link to Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Whisper Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- JOIN SCREEN -->
-  <div id="join-screen" class="screen active">
-    <div class="welcome-container">
-      <h1 class="logo"><i class="fas fa-moon"></i> Whisper <i class="fas fa-star"></i></h1>
-      <p>Connect secretly in the cosmos...</p>
-      <div class="input-group">
-        <input id="username" placeholder="Your Alias" autocomplete="off" />
-        <input id="room" placeholder="Room Code" autocomplete="off" />
-        <button id="join-btn"><i class="fas fa-sign-in-alt"></i> Enter Space</button>
-      </div>
-    </div>
-  </div>
 
-  <!-- CHAT SCREEN -->
-  <div id="chat-screen" class="screen">
-    <header class="chat-header">
-      <div class="room-info">
-        <i class="fas fa-hashtag"></i>
-        <span id="room-title">Loading...</span>
-      </div>
-      <div class="user-status">
-        <i class="fas fa-circle" style="color: #00f0ff;"></i> Online
-      </div>
-    </header>
-    <div id="messages"></div>
-    <footer class="input-area">
-      <div class="input-box">
-        <input id="message" placeholder="Type your whisper..." autocomplete="off" />
-        <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-      </div>
-    </footer>
+<!-- JOIN -->
+<section id="join" class="screen active">
+  <div class="join-card">
+    <h1>🌌 Whisper</h1>
+    <p>Private rooms. Real-time chat.</p>
+
+    <input id="username" placeholder="Your name" />
+    <input id="room" placeholder="Room code" />
+    <button id="joinBtn">Join Chat</button>
   </div>
-  <script src="script.js"></script>
+</section>
+
+<!-- CHAT -->
+<section id="chat" class="screen">
+  <header class="chat-header">
+    <div>
+      <h2 id="roomTitle"></h2>
+      <span class="status">● Online</span>
+    </div>
+  </header>
+
+  <main id="messages"></main>
+
+  <footer class="chat-input">
+    <input id="messageInput" placeholder="Type a message…" />
+    <button id="sendBtn" disabled>
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </footer>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
