@@ -13,19 +13,20 @@
 </head>
 <body>
 
-<!-- JOIN -->
+<!-- JOIN SCREEN -->
 <section id="join" class="screen active">
   <div class="join-card">
     <h1>🌌 Whisper</h1>
-    <p>Private rooms. Real-time chat.</p>
+    <p>Private rooms · Real-time chat</p>
 
-    <input id="username" placeholder="Your name" />
-    <input id="room" placeholder="Room code" />
+    <input id="username" type="text" placeholder="Your name" />
+    <input id="room" type="text" placeholder="Room code" />
+
     <button id="joinBtn">Join Chat</button>
   </div>
 </section>
 
-<!-- CHAT -->
+<!-- CHAT SCREEN -->
 <section id="chat" class="screen">
   <header class="chat-header">
     <div>
@@ -37,7 +38,12 @@
   <main id="messages"></main>
 
   <footer class="chat-input">
-    <input id="messageInput" placeholder="Type a message…" />
+    <input
+      id="messageInput"
+      type="text"
+      placeholder="Type a message…"
+      autocomplete="off"
+    />
     <button id="sendBtn" disabled>
       <i class="fas fa-paper-plane"></i>
     </button>
