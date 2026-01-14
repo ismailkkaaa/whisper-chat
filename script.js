@@ -16,13 +16,18 @@ joinBtn.onclick = () => {
   username = document.getElementById("username").value.trim();
   room = document.getElementById("room").value.trim();
 
-  if (!username || !room) return alert("Fill all fields");
+  if (!username || !room) {
+    alert("Please fill all fields");
+    return;
+  }
+
   connect();
 };
 
 function connect() {
   socket = new WebSocket(
-    "wss://whisper-chat.albasith399.workers.dev/?room=" + encodeURIComponent(room)
+    "wss://whisper-chat.albasith399.workers.dev/?room=" +
+      encodeURIComponent(room)
   );
 
   socket.onopen = () => {
@@ -32,24 +37,39 @@ function connect() {
     sendBtn.disabled = false;
   };
 
-  socket.onmessage = (e) => {
+  socket.onmessage = (event) => {
     try {
-      const data = JSON.parse(e.data);
+      const data = JSON.parse(event.data);
       renderMessage(data.user, data.text);
-    } catch {}
+    } catch (err) {
+      console.error("Invalid message", err);
+    }
   };
 
-  socket.onclose = () => alert("Disconnected");
+  socket.onclose = () => {
+    alert("Connection closed");
+    sendBtn.disabled = true;
+  };
+
+  socket.onerror = () => {
+    alert("WebSocket error");
+  };
 }
 
 sendBtn.onclick = sendMessage;
-msgInput.onkeydown = e => e.key === "Enter" && sendMessage();
+msgInput.onkeydown = (e) => {
+  if (e.key === "Enter") sendMessage();
+};
 
 function sendMessage() {
   const text = msgInput.value.trim();
   if (!text || socket.readyState !== 1) return;
 
-  socket.send(JSON.stringify({ user: username, text }));
+  socket.send(JSON.stringify({
+    user: username,
+    text: text
+  }));
+
   msgInput.value = "";
 }
 
