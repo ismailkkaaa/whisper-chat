@@ -1,67 +1,112 @@
-const user = sessionStorage.getItem("whisper-user");
+/* SESSION DATA */
+const username = sessionStorage.getItem("whisper-user");
 const room = sessionStorage.getItem("whisper-room");
 
-if (!user || !room) location.href = "/";
+if (!username || !room) {
+  location.href = "/";
+}
 
-document.getElementById("room").textContent = `# ${room}`;
-
-const input = document.getElementById("input");
+/* DOM */
 const messages = document.getElementById("messages");
-const typing = document.getElementById("typing");
+const input = document.getElementById("messageInput");
+const sendBtn = document.getElementById("sendBtn");
+const roomName = document.getElementById("roomName");
+const typingIndicator = document.getElementById("typingIndicator");
 
-const ws = new WebSocket(
+roomName.textContent = `# ${room}`;
+
+/* SOCKET */
+const socket = new WebSocket(
   "wss://whisper-chat.albasith399.workers.dev/?room=" +
-  encodeURIComponent(room)
+    encodeURIComponent(room)
 );
 
-ws.onopen = () => {
-  ws.send(JSON.stringify({ type: "join", user }));
-  setTimeout(() => input.focus(), 50);
+/* ENSURE FOCUS WORKS ON DESKTOP */
+function forceFocus() {
+  setTimeout(() => {
+    input.focus();
+    input.click(); // 🔥 Firefox / Desktop fallback
+  }, 50);
+}
+
+/* SOCKET OPEN */
+socket.onopen = () => {
+  socket.send(JSON.stringify({ type: "join", user: username }));
+  forceFocus();
 };
 
-ws.onmessage = e => {
-  const data = JSON.parse(e.data);
+/* SOCKET MESSAGE */
+let typingTimeout;
 
-  if (data.type === "typing" && data.user !== user) {
-    typing.textContent = `${data.user} is typing…`;
-    clearTimeout(window._t);
-    window._t = setTimeout(() => typing.textContent = "", 1500);
+socket.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+
+  if (data.type === "join") {
+    systemMessage(`${data.user} joined`);
   }
 
-  if (data.type === "join" || data.type === "leave") {
-    system(`${data.user} ${data.type === "join" ? "joined" : "left"}`);
+  if (data.type === "leave") {
+    systemMessage(`${data.user} left`);
+  }
+
+  if (data.type === "typing" && data.user !== username) {
+    typingIndicator.textContent = `${data.user} is typing…`;
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+      typingIndicator.textContent = "";
+    }, 1500);
   }
 
   if (data.type === "message") {
-    add(data.user, data.text);
+    addMessage(data.user, data.text);
   }
 };
 
-input.addEventListener("input", () => {
-  ws.send(JSON.stringify({ type: "typing", user }));
-});
-
-document.getElementById("send").onclick = send;
-input.onkeydown = e => e.key === "Enter" && send();
-
-function send() {
+/* SEND MESSAGE */
+function sendMessage() {
   const text = input.value.trim();
   if (!text) return;
-  ws.send(JSON.stringify({ type: "message", user, text }));
+
+  socket.send(
+    JSON.stringify({
+      type: "message",
+      user: username,
+      text
+    })
+  );
+
   input.value = "";
+  forceFocus();
 }
 
-function add(u, t) {
+/* EVENTS */
+sendBtn.onclick = sendMessage;
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
+
+/* SEND TYPING EVENT */
+input.addEventListener("input", () => {
+  socket.send(JSON.stringify({ type: "typing", user: username }));
+});
+
+/* CLICK ANYWHERE TO REFRESH FOCUS */
+document.body.addEventListener("click", forceFocus);
+
+/* RENDER FUNCTIONS */
+function addMessage(user, text) {
   const div = document.createElement("div");
-  div.className = "msg" + (u === user ? " me" : "");
-  div.textContent = `${u}: ${t}`;
+  div.className = "msg" + (user === username ? " me" : "");
+  div.textContent = `${user}: ${text}`;
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 }
 
-function system(t) {
+function systemMessage(text) {
   const div = document.createElement("div");
   div.className = "system";
-  div.textContent = t;
+  div.textContent = text;
   messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
 }
