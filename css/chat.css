@@ -1,0 +1,55 @@
+.top {
+  padding: 14px;
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  display: flex;
+  justify-content: space-between;
+}
+
+#messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.msg {
+  max-width: 75%;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 14px;
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+}
+
+.me {
+  margin-left: auto;
+  background: var(--primary);
+}
+
+.system {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.input-bar {
+  display: flex;
+  padding: 10px;
+  background: var(--glass);
+}
+
+.input-bar input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+}
+
+.input-bar button {
+  margin-left: 8px;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  padding: 0 16px;
+}

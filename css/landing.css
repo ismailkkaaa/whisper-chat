@@ -1,0 +1,49 @@
+.card {
+  max-width: 360px;
+  margin: auto;
+  margin-top: 12vh;
+  padding: 28px;
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border-radius: 18px;
+  text-align: center;
+}
+
+.card h1 {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.tagline {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
