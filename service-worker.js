@@ -1,28 +1,47 @@
-const CACHE = "whisper-v1";
-const ASSETS = [
+const CACHE_NAME = "whisper-v2"; // 🔥 NEW VERSION
+const CORE_ASSETS = [
   "/",
   "/index.html",
-  "/style.css",
-  "/script.js",
+  "/chat.html",
+  "/css/base.css",
+  "/css/landing.css",
+  "/css/chat.css",
+  "/js/landing.js",
+  "/js/chat.js",
   "/manifest.json",
   "/public/favicon.ico"
 ];
 
-self.addEventListener("install", e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
-  self.skipWaiting();
+/* INSTALL */
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.map(key => caches.delete(key)))
+    ).then(() => caches.open(CACHE_NAME))
+     .then(cache => cache.addAll(CORE_ASSETS))
+  );
+  self.skipWaiting(); // 🚀 activate immediately
 });
 
-self.addEventListener("activate", e => {
-  e.waitUntil(
+/* ACTIVATE */
+self.addEventListener("activate", event => {
+  event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+      Promise.all(
+        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+      )
     )
   );
-  self.clients.claim();
+  self.clients.claim(); // 🚀 take control instantly
 });
 
-self.addEventListener("fetch", e => {
-  if (e.request.method !== "GET") return;
-  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+/* FETCH */
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
+
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request);
+    })
+  );
 });
