@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+/* Screens */
+.screen {
+  display: none;
+  height: 100vh;
+}
+.screen.active {
+  display: flex;
+}
+
+/* JOIN */
+#join {
+  align-items: center;
+  justify-content: center;
+}
+
+.join-card {
+  width: 90%;
+  max-width: 380px;
+  padding: 28px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.tagline {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.join-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: white;
+  color: black;
+}
+
+.join-card button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #00e5ff;
+  color: black;
+}
+
+.branding {
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+.branding a {
+  color: #00e5ff;
+  text-decoration: none;
+}
+
+/* CHAT */
+#chat {
+  flex-direction: column;
+}
+
+.chat-header {
+  padding: 14px;
+  background: rgba(0,0,0,0.35);
+}
+
+.typing {
+  font-size: 12px;
+  opacity: 0.7;
+  height: 16px;
+}
+
+/* Messages */
+#messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Message bubble */
+.msg {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  animation: fadeIn 0.15s ease;
+}
+
+.me {
+  align-self: flex-end;
+  background: #00e5ff;
+  color: black;
+}
+
+.other {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.18);
+}
+
+.system {
+  align-self: center;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.meta {
+  font-size: 11px;
+  opacity: 0.6;
+  margin-top: 4px;
+}
+
+/* Input */
+.chat-input {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: rgba(0,0,0,0.4);
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: white;
+  color: black;
+}
+
+.chat-input button {
+  width: 48px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #00e5ff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .msg { max-width: 90%; }
+}
