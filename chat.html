@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Whisper Chat</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/chat.css">
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/chat.css" />
 </head>
+
 <body>
 
-<header class="top">
-  <span id="room"></span>
-  <span id="typing"></span>
-</header>
+  <!-- HEADER -->
+  <header class="chat-header">
+    <span id="roomName"># room</span>
+    <span id="typingIndicator"></span>
+  </header>
 
-<main id="messages"></main>
+  <!-- MESSAGES -->
+  <main id="messages"></main>
 
-<footer class="input-bar">
-  <input id="input" placeholder="Type a message…">
-  <button id="send">➤</button>
-</footer>
+  <!-- INPUT -->
+  <footer class="chat-input">
+    <input
+      id="messageInput"
+      type="text"
+      placeholder="Type a message…"
+      autocomplete="off"
+    />
+    <button id="sendBtn">➤</button>
+  </footer>
 
-<script src="/js/chat.js"></script>
+  <script src="/js/chat.js"></script>
 </body>
 </html>
