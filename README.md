@@ -272,6 +272,53 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Open source community contributions
 - Cloudflare Workers for WebSocket infrastructure
 
+## 🔮 Upcoming Features
+
+We're constantly working to improve Whisper Chat! Here are the exciting features planned for future releases:
+
+### 🎨 UI/UX Enhancements
+- **Dark/Light Theme Toggle** - Manual theme switching capability
+- **Custom Emoji Picker** - Integrated emoji support in messages
+- **User Avatars** - Profile picture support (Gravatar/custom uploads)
+- **Enhanced Animations** - Advanced micro-interactions and transitions
+
+### 🛠️ Core Functionality
+- **File Sharing** - Image and document sharing capabilities
+- **Voice Messages** - Audio recording and playback features
+- **Message Search** - Chat history search functionality
+- **Message Editing/Deleting** - User message management
+- **User Mentions** - @username tagging system
+
+### 🔧 Technical Improvements
+- **End-to-End Encryption** - Enhanced client-side encryption
+- **Push Notifications** - Browser notifications for new messages
+- **Enhanced Offline Support** - Improved offline message queuing
+- **Rate Limiting** - Advanced spam prevention mechanisms
+
+### 📱 Mobile Experience
+- **Native Mobile Apps** - iOS and Android applications
+- **Haptic Feedback** - Tactile response integration
+- **Biometric Authentication** - Face/Fingerprint login options
+
+### 🌐 Social Features
+- **User Profiles** - Detailed profile pages with status/bio
+- **Friend System** - Add/block contacts functionality
+- **Group Chats** - Multi-user rooms with admin controls
+- **Presence Indicators** - Online/away/busy status system
+
+### 🎯 Advanced Features
+- **Message Translation** - Real-time language translation
+- **Scheduled Messages** - Time-based message sending
+- **Chat Bots** - Automated responses and moderation
+- **Custom Themes** - User-defined color schemes
+
+### 🔒 Security & Privacy
+- **Two-Factor Authentication** - Enhanced account security
+- **Message Expiration** - Self-destructing messages
+- **Privacy Controls** - Granular permission settings
+
+Have a feature suggestion? We'd love to hear from you! Open an issue or submit a pull request.
+
 ## 📞 Support
 
 For support, email support@whisper-chat.app or join our [Discord community](https://discord.gg/whisper).
