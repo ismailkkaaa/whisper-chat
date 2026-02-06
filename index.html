@@ -2,34 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Whisper</title>
+  <title>Whisper - Private Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Private, secure, and real-time messaging platform">
 
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" href="/public/favicon.ico">
-  <meta name="theme-color" content="#b388ff">
+  <meta name="theme-color" content="#405de6">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/landing.css">
 </head>
 <body>
 
-<main class="card">
-  <h1>✨ Whisper(Beta)</h1>
-  <p class="tagline">Private · Real-time · Secure</p>
+<div class="landing-container">
+  <main class="card">
+    <h1>💬 Whisper</h1>
+    <p class="tagline">Private conversations, real-time connections</p>
 
-  <input id="username" placeholder="Your name">
-  <input id="room" placeholder="Room code">
+    <div class="form-group">
+      <input id="username" placeholder="Your name" autocomplete="name">
+    </div>
+    
+    <div class="form-group">
+      <input id="room" placeholder="Room code or create new" autocomplete="off">
+    </div>
 
-  <button id="join">Join Room</button>
+    <div class="button-group">
+      <button id="join">Start Chatting</button>
+    </div>
 
-  <footer>
-    Created by  
-    <a href="https://github.com/ismailkkaaa">ismailkkaaa</a> ·
-    <a href="https://github.com/chriz-3656">chriz-3656</a>
-  </footer>
-</main>
+    <div class="social-proof">
+      <span>🔒 End-to-end encrypted</span>
+      <span>⚡ Real-time</span>
+    </div>
+
+    <div class="divider">
+      <span>Created with ❤️ by</span>
+    </div>
+
+    <footer>
+      <a href="https://github.com/ismailkkaaa" target="_blank" rel="noopener">ismailkkaaa</a> ·
+      <a href="https://github.com/chriz-3656" target="_blank" rel="noopener">chriz-3656</a>
+    </footer>
+  </main>
+</div>
 
 <script src="/js/landing.js"></script>
 </body>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Whisper Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Secure private chat room">
 
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/chat.css" />
@@ -24,14 +25,14 @@
     <input
       id="messageInput"
       type="text"
-      placeholder="Type a message…"
+      placeholder="Type a message..."
       autocomplete="off"
     />
-    <button id="sendBtn">➤</button>
+    <button id="sendBtn" aria-label="Send message">➤</button>
   </footer>
 
   <script>
-    // 🔥 Canonical URL enforcement
+    // Canonical URL enforcement
     // Prevent /chat.html usage
     if (location.pathname.endsWith(".html")) {
       location.replace("/chat");

@@ -1,14 +1,14 @@
 {
-  "id": "whisper-chat-v2",
+  "id": "whisper-chat-instagram",
   "name": "Whisper Chat",
   "short_name": "Whisper",
-  "description": "Private real-time chat with a light purple glassmorphism UI",
-  "start_url": "/?v=2",
+  "description": "Private real-time chat with Instagram-inspired design",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#3a1c71",
-  "theme_color": "#b388ff",
+  "background_color": "#405de6",
+  "theme_color": "#405de6",
   "icons": [
     {
       "src": "/public/icons/icon-72.png",
