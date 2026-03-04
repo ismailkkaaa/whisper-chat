@@ -1,7 +1,7 @@
 // service-worker.js
-// Whisper Chat Service Worker — v1 (CLEAN RESET)
+// Whisper Chat Service Worker — v2 (MOBILE FIXES)
 
-const CACHE_NAME = "whisper-v1";
+const CACHE_NAME = "whisper-v2";
 
 // Cache ONLY static assets (NO HTML navigation control)
 const STATIC_ASSETS = [
