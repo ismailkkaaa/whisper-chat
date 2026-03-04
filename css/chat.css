@@ -45,36 +45,80 @@ body {
 
 .header-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .header-btn {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border: none;
-  border-radius: 50%;
-  background: var(--ig-background);
-  color: var(--ig-text);
-  font-size: 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+  color: #555;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
-  box-shadow: var(--shadow-light);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.header-btn:hover::before {
+  opacity: 1;
+}
+
+.header-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
 }
 
 .header-btn:hover {
-  transform: scale(1.1);
-  background: var(--ig-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .header-btn:active {
-  transform: scale(0.95);
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-btn:hover svg {
+  transform: scale(1.15);
+}
+
+/* Share button - Instagram gradient */
+#shareBtn {
+  background: var(--ig-gradient);
+  color: white;
+}
+
+#shareBtn:hover {
+  box-shadow: 0 4px 15px rgba(64, 93, 230, 0.4);
+}
+
+/* Leave button - Red gradient */
+.leave-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+  color: white;
 }
 
 .leave-btn:hover {
-  background: var(--ig-error);
+  box-shadow: 0 4px 15px rgba(238, 90, 90, 0.4);
 }
 
 /* SPLASH SCREEN */
