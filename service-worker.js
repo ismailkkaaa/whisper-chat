@@ -1,7 +1,7 @@
 // service-worker.js
-// Whisper Chat Service Worker — v3 (NEW FEATURES)
+// Whisper Chat Service Worker — v4 (PREVIEW IMAGE)
 
-const CACHE_NAME = "whisper-v3";
+const CACHE_NAME = "whisper-v4";
 
 // Cache ONLY static assets (NO HTML navigation control)
 const STATIC_ASSETS = [
@@ -13,7 +13,8 @@ const STATIC_ASSETS = [
   "/js/chat.js",
 
   "/manifest.json",
-  "/public/favicon.ico"
+  "/public/favicon.ico",
+  "/public/preview.png"
 ];
 
 // INSTALL — remove all old caches, cache static assets

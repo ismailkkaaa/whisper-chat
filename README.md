@@ -4,6 +4,8 @@ A beautiful, privacy-focused real-time chat application inspired by Instagram's 
 
 ![Whisper Chat Banner](https://placehold.co/800x200/405de6/white?text=Whisper+Chat&font=montserrat)
 
+![Whisper Chat Preview](public/preview.png)
+
 ## 🌟 Features
 
 ### 🔒 Privacy & Security
