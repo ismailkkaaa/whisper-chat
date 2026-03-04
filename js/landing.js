@@ -6,6 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const roomInput = document.getElementById("room");
   const inputs = [usernameInput, roomInput];
 
+  // Check for room in URL params (for sharing links)
+  const urlParams = new URLSearchParams(window.location.search);
+  const roomFromUrl = urlParams.get('room');
+  if (roomFromUrl) {
+    roomInput.value = roomFromUrl;
+    roomInput.classList.add('success');
+    // Focus on username if room is pre-filled
+    usernameInput.focus();
+  }
+
   // Form validation and enhancement
   function validateForm() {
     const username = usernameInput.value.trim();

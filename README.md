@@ -14,20 +14,24 @@ A beautiful, privacy-focused real-time chat application inspired by Instagram's 
 
 ### 🎨 Modern UI/UX
 - **Instagram-inspired design** with gradient color scheme
-- **Fully responsive** layout for all devices
+- **Fully responsive** layout for all devices (320px to desktop)
 - **Smooth animations** and micro-interactions
 - **Glassmorphism effects** and modern shadows
 - **Dark mode support** (automatic system preference detection)
+- **Splash loading screen** with animated logo
+- **Share room link** functionality with native share or clipboard copy
+- **Leave room** button for easy exit
 
 ### ⚡ Performance
-- **Lightweight** (~18 files total, no heavy frameworks)
+- **Lightweight** (~20 files total, no heavy frameworks)
 - **Progressive Web App** (PWA) support
-- **Service Worker** for offline capabilities
+- **Service Worker v3** for offline capabilities
 - **Optimized assets** and fast loading times
 
 ### 📱 Cross-Platform
 - **Mobile-first design** approach
-- **Touch-friendly interfaces**
+- **iPhone X+ safe area** support (notch/home indicator)
+- **Touch-friendly interfaces** with 44px minimum targets
 - **Installable web application**
 - **Works on all modern browsers**
 

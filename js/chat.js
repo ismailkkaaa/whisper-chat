@@ -14,6 +14,9 @@ const input = document.getElementById("messageInput");
 const sendBtn = document.getElementById("sendBtn");
 const roomName = document.getElementById("roomName");
 const typingIndicator = document.getElementById("typingIndicator");
+const shareBtn = document.getElementById("shareBtn");
+const leaveBtn = document.getElementById("leaveBtn");
+const splash = document.getElementById("splash");
 
 // Set room name with enhanced styling
 roomName.innerHTML = `<span class="online-indicator"></span># ${room}`;
@@ -74,6 +77,14 @@ socket.onopen = () => {
   showToast('Connected to chat!', 'success');
   forceFocus();
   updateConnectionStatus(true);
+  
+  // Hide splash screen after connection
+  if (splash) {
+    splash.classList.add('hidden');
+    setTimeout(() => {
+      splash.style.display = 'none';
+    }, 500);
+  }
 };
 
 socket.onclose = () => {
@@ -296,3 +307,61 @@ window.addEventListener('beforeunload', () => {
     socket.send(JSON.stringify({ type: "leave", user: username }));
   }
 });
+
+/* SHARE & LEAVE BUTTONS */
+// Share room link
+if (shareBtn) {
+  shareBtn.addEventListener('click', async () => {
+    const roomLink = `${window.location.origin}/?room=${encodeURIComponent(room)}`;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Join my Whisper Chat room',
+          text: `Join my chat room "${room}" on Whisper Chat!`,
+          url: roomLink
+        });
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          copyToClipboard(roomLink);
+        }
+      }
+    } else {
+      copyToClipboard(roomLink);
+    }
+  });
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Room link copied to clipboard!', 'success');
+  }).catch(() => {
+    // Fallback
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showToast('Room link copied!', 'success');
+  });
+}
+
+// Leave room
+if (leaveBtn) {
+  leaveBtn.addEventListener('click', () => {
+    if (confirm('Are you sure you want to leave this chat room?')) {
+      // Notify others
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send(JSON.stringify({ type: "leave", user: username }));
+      }
+      
+      // Clear session
+      sessionStorage.removeItem("whisper-user");
+      sessionStorage.removeItem("whisper-room");
+      
+      // Redirect to home
+      window.location.href = "/";
+    }
+  });
+}

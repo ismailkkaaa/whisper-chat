@@ -16,9 +16,29 @@
 
   <!-- HEADER -->
   <header class="chat-header">
-    <span id="roomName"># room</span>
-    <span id="typingIndicator"></span>
+    <div class="header-left">
+      <span id="roomName"># room</span>
+      <span id="typingIndicator"></span>
+    </div>
+    <div class="header-actions">
+      <button id="shareBtn" class="header-btn" aria-label="Share room link" title="Share room link">🔗</button>
+      <button id="leaveBtn" class="header-btn leave-btn" aria-label="Leave room" title="Leave room">🚪</button>
+    </div>
   </header>
+  
+  <!-- SPLASH SCREEN -->
+  <div id="splash" class="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo">💬</div>
+      <h1>Whisper</h1>
+      <div class="splash-loader">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+      <p>Connecting to room...</p>
+    </div>
+  </div>
 
   <!-- MESSAGES -->
   <main id="messages"></main>
